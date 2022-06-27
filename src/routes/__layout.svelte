@@ -1,17 +1,29 @@
 <script lang="ts">
 	import Header from '$lib/header/Header.svelte';
 	import '../app.css';
+	import { goto } from '$app/navigation';
+	import { session } from '$app/stores';
+	import { supabaseClient } from '$lib/db';
+	import { SupaAuthHelper } from '@supabase/auth-helpers-svelte';
+	import type { User } from '@supabase/supabase-js';
+
+	const onUserUpdate = async (user: User|null) => {
+		if (user) await goto('/');
+	};
 </script>
 
-<Header />
+<SupaAuthHelper {supabaseClient} {session} {onUserUpdate}>
+	<Header />
 
-<main>
-	<slot />
-</main>
+	<main>
+		<slot />
+	</main>
 
-<footer>
-	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-</footer>
+	<footer>
+		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+	</footer>
+</SupaAuthHelper>
+
 
 <style>
 	main {
