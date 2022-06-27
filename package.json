@@ -2,15 +2,16 @@
 	"name": "test-auth",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "svelte-kit dev",
-		"build": "svelte-kit build",
-		"package": "svelte-kit package",
-		"preview": "svelte-kit preview",
-		"prepare": "svelte-kit sync",
-		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
-		"format": "prettier --write --plugin-search-dir=. ."
+		"dev": "env-cmd svelte-kit dev",
+		"build": "env-cmd svelte-kit build",
+		"package": "env-cmd svelte-kit package",
+		"preview": "env-cmd svelte-kit preview",
+		"prepare": "env-cmd svelte-kit sync",
+		"test": "env-cmd playwright test",
+		"check": "env-cmd svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "env-cmd svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "env-cmd prettier --check --plugin-search-dir=. . && eslint .",
+		"format": "env-cmd prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
@@ -18,6 +19,7 @@
 		"@types/cookie": "^0.5.1",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
+		"env-cmd": "^10.1.0",
 		"eslint": "^8.16.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^4.0.0",
@@ -32,6 +34,11 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/fira-mono": "^4.5.0",
-		"cookie": "^0.4.2"
+		"@supabase/auth-helpers-svelte": "^0.4.2",
+		"@supabase/auth-helpers-sveltekit": "^0.6.2",
+		"@supabase/supabase-js": "^1.35.4",
+		"cookie": "^0.4.2",
+		"es6-promise": "^4.2.8",
+		"url-parse": "^1.5.10"
 	}
 }
